@@ -28,15 +28,15 @@ def ShowOrderView(request):
 
 
 #Update a Order (Update View) To update a order, create a view in crudapp/views.py:
-def UpdateOrderView(request):
-    obj = Orders.objects.all()
+def UpdateOrderView(request, id):
+    obj = Orders.objects.get(id=id)
     form = OrdersForm(instance=obj) #instance = obj -> bu yerda oldingi ma'lumotlarni ko'rsatish uchun
-    if request.method == POST:
+    if request.method == 'POST':
         form = OrdersForm(request.POST, instance=obj)
         if form.is_valid():
             form.save()
             return redirect('show_url')
-    template_name = 'crudapp/order.html'
+    template_name = 'crudapp/orders.html'
     context = {
         'form': form
     }
@@ -45,8 +45,8 @@ def UpdateOrderView(request):
 
 #Delete a Order (Delete View) Finally, let's create a view to delete a order in crudapp/views.py:
 def DeleteOrderView(request, id):
-    obj = Orders.object.get(id=id)
-    if request.method == POST:
+    obj = Orders.objects.get(id=id)
+    if request.method == 'POST':
         obj.delete()
         return redirect('show_url')
     template_name = 'crudapp/confirmation.html'
