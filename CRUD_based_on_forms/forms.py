@@ -8,7 +8,6 @@ class OrdersForm(forms.ModelForm):
         fields = '__all__'
 
     labels = {
-        'picture': 'Picture',
         'oid': 'Order ID',
         'fname': 'First Name',
         'lname': 'Last Name.',
@@ -18,8 +17,8 @@ class OrdersForm(forms.ModelForm):
     }
 
     widgets ={
-        'picture': forms.ClearableFileInput(attrs={'placeholder': 'eg. just picture'}),
-        'oid': forms.NumberInput(attrs={'placeholder': 'eg. 101'}),
+        #'picture': forms.ClearableFileInput(attrs={'placeholder': 'eg. just picture'}),
+        # 'oid': forms.NumberInput(attrs={'placeholder': 'eg. 101'}),
         'fname': forms.TextInput(attrs={'placeholder': 'eg. Prosenjeet'}),
         'lname': forms.TextInput(attrs={'placeholder': 'eg. Shil'}),
         'price': forms.NumberInput(attrs={'placeholder': 'eg. 10000'}),

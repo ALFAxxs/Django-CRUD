@@ -8,7 +8,7 @@
 {% block content %}
 <center><h1>Order Form</h1></center>
 <div class="container">
-   <form method="post" class="jumbotron">
+   <form method="post" class="jumbotron" enctype="multipart/form-data">
        {% csrf_token %}
        {{form|crispy}}
        <input type="submit" value="Place Order" class="btn btn-success">

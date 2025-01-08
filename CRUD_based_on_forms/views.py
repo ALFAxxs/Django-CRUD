@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect
 from .forms import OrdersForm
 from .models import Orders
 
+
 #Create a Order (Create View) In crudapp/views.py, define a view function for creating a new order
 def OrderFormView(request):
     form = OrdersForm()
     if request.method == 'POST':
-        form = OrdersForm(request.POST)
+        form = OrdersForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('show_url')
@@ -22,7 +23,7 @@ def ShowOrderView(request):
     obj = Orders.objects.all()
     template_name = 'crudapp/show.html'
     context = {
-        'obj':obj
+        'obj': obj
     }
     return render(request, template_name, context)
 
@@ -32,7 +33,7 @@ def UpdateOrderView(request, id):
     obj = Orders.objects.get(id=id)
     form = OrdersForm(instance=obj) #instance = obj -> bu yerda oldingi ma'lumotlarni ko'rsatish uchun
     if request.method == 'POST':
-        form = OrdersForm(request.POST, instance=obj)
+        form = OrdersForm(request.POST, request.FILES, instance=obj)
         if form.is_valid():
             form.save()
             return redirect('show_url')

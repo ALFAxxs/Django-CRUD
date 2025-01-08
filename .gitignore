@@ -139,7 +139,7 @@ GitHub.sublime-settings
 !.vscode/extensions.json
 .history
 
-#migrations
-#migrations
-#media
+migrations
+media
+staticfiles
 
