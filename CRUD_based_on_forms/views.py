@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import OrdersForm
 from .models import Orders
 
@@ -46,10 +46,14 @@ def UpdateOrderView(request, id):
 
 #Delete a Order (Delete View) Finally, let's create a view to delete a order in crudapp/views.py:
 def DeleteOrderView(request, id):
-    obj = Orders.objects.get(id=id)
+    # obj = Orders.objects.get(id=id)
+    obj = get_object_or_404(Orders, id=id)
     if request.method == 'POST':
-        obj.delete()
-        return redirect('show_url')
+        if 'confirm' in request.POST:
+            obj.delete()
+            return redirect('show_url')
+        else:
+            return redirect('show_url')
     template_name = 'crudapp/confirmation.html'
     context = {
         'obj': obj
