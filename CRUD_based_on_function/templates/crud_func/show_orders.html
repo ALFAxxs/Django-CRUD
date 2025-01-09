@@ -1,0 +1,64 @@
+{% extends 'function_base.html '%}
+{% block title%}
+<title> Orders </title>
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-3xl font-bold text-center mb-8">Show Orders</h1>
+    <div class="overflow-x-auto">
+        <table class="table-auto border-collapse border border-gray-300 w-full bg-white shadow-lg">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="border border-gray-300 px-4 py-2 text-left">Order ID</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">First Name</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Last Name</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Price</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Email ID</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Address</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Picture</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Video</th>
+                    <th class="border border-gray-300 px-4 py-2 text-left">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in obj %}
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">{{ i.id }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ i.fname }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ i.lname }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ i.price }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ i.mail }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ i.addr }}</td>
+                    <td class="border border-gray-300 px-4 py-2">
+                        {% if  i.image %}
+                        <img src="{{ i.image.url }}" alt="Image" class="w-16 h-16 object-cover rounded">
+                        {% else %}
+                            No image uploaded
+                        {% endif %}
+                    </td>
+                    <td class="border border-gray-300 px-4 py-2">
+                        {% if i.video %}
+                        <video class="w-16 h-16 object-cover rounded" controls>
+                            <source src="{{ i.video.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        {% else %}
+                            No video uploaded
+                        {% endif %}
+                    </td>
+                    <td class="border border-gray-300 px-4 py-2">
+                        <div class="flex space-x-2">
+                            <a href="#" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+                                Update
+                            </a>
+                            <a href="{% url 'func:delete_orders' i.id %}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                                Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

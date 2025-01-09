@@ -46,7 +46,6 @@ def UpdateOrderView(request, id):
 
 #Delete a Order (Delete View) Finally, let's create a view to delete a order in crudapp/views.py:
 def DeleteOrderView(request, id):
-    # obj = Orders.objects.get(id=id)
     obj = get_object_or_404(Orders, id=id)
     if request.method == 'POST':
         if 'confirm' in request.POST:
