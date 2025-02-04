@@ -22,7 +22,8 @@ from conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('CRUD_based_on_forms.urls')),
-    path('function/', include('CRUD_based_on_function.urls'))
+    path('function/', include('CRUD_based_on_function.urls')),
+    path('api/', include('drf.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
