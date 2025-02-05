@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('CRUD_based_on_forms.urls')),
     path('function/', include('CRUD_based_on_function.urls')),
-    path('api/', include('drf.urls'))
+    path('api/', include('drf.urls')),
+    path('fastapi/', include('fast_api.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
